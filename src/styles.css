@@ -347,7 +347,93 @@ body {
 .hover\:bg-white\/5:hover {
   background-color: rgba(255, 255, 255, 0.05);
 }
+/* Styles pour le menu burger et responsive */
+@media (max-width: 1023px) {
+  .min-h-screen {
+    min-height: 100vh;
+  }
+  
+  .pt-16 {
+    padding-top: 4rem;
+  }
+}
 
+/* Animation pour le menu mobile */
+.transition-transform {
+  transition-property: transform;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+.-translate-x-full {
+  transform: translateX(-100%);
+}
+
+.translate-x-0 {
+  transform: translateX(0);
+}
+
+.z-40 {
+  z-index: 40;
+}
+
+.z-50 {
+  z-index: 50;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.relative {
+  position: relative;
+}
+
+.inset-0 {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.bg-black\/50 {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.shadow-lg {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+.top-4 {
+  top: 1rem;
+}
+
+.left-4 {
+  left: 1rem;
+}
+
+.w-5 {
+  width: 1.25rem;
+}
+
+.h-5 {
+  height: 1.25rem;
+}
+
+.ml-auto {
+  margin-left: auto;
+}
+
+/* Desktop styles */
+@media (min-width: 1024px) {
+  .lg\:relative {
+    position: relative;
+  }
+  
+  .lg\:hidden {
+    display: none;
+  }
+}
 .hover\:text-white:hover {
   color: white;
 }
