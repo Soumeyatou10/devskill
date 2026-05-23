@@ -1,0 +1,42 @@
+<aside class="w-64 bg-[#1a2340] flex flex-col flex-shrink-0 h-full">
+      <!-- Logo -->
+      <div class="p-4 flex items-center gap-3 border-b border-white/10">
+        <div class="w-8 h-8 rounded-lg bg-[#0d6e6e] flex items-center justify-center">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <span class="font-lora font-bold text-white text-lg">DevSkill</span>
+      </div>
+
+      <!-- Navigation -->
+      <nav class="flex-1 py-4">
+        @for (item of navItems; track item.path) {
+          <a 
+            (click)="navigate(item.path)"
+            class="flex items-center gap-3 px-4 py-3 mx-2 rounded-lg text-white/60 hover:text-white hover:bg-white/5 cursor-pointer transition-all"
+            [class.active]="activeRoute === item.path"
+            [class.text-white]="activeRoute === item.path"
+            [class.bg-[#0d6e6e]/20]="activeRoute === item.path"
+          >
+            <span class="text-xl">{{ item.icon }}</span>
+            <span class="text-sm font-semibold">{{ item.label }}</span>
+          </a>
+        }
+      </nav>
+
+      <!-- User Info -->
+      <div class="p-4 border-t border-white/10 mt-auto">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-full bg-[#0d6e6e] flex items-center justify-center">
+            <span class="text-white text-sm font-bold">JD</span>
+          </div>
+          <div class="flex-1 min-w-0">
+            <div class="text-white text-sm font-bold truncate">{{ userName() }}</div>
+            <div class="text-white/40 text-xs">
+              Niv {{ skillService.currentLevel() }} · {{ skillService.totalXP() }} XP
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>

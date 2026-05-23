@@ -1,0 +1,11 @@
+<div class="bg-white border border-[#e0d8cc] rounded-xl p-4 transition-all hover:shadow-md">
+      <div class="text-xs font-bold uppercase tracking-wide text-[#5a5a5a] mb-1">
+        {{ label() }}
+      </div>
+      <div class="font-lora text-2xl md:text-3xl font-bold" [style.color]="color()">
+        {{ value() }}
+      </div>
+      @if (subtitle()) {
+        <div class="text-xs text-[#5a5a5a] mt-1">{{ subtitle() }}</div>
+      }
+</div>

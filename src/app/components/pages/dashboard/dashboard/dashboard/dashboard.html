@@ -1,0 +1,48 @@
+<div class="space-y-5">
+      <h1 class="font-lora text-xl md:text-2xl font-bold text-navy-800">Dashboard</h1>
+      
+      <!-- Stats Grid -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <app-stat-card label="Compétences" [value]="skillService.skills().length" subtitle="au total" />
+        <app-stat-card label="Maîtrisées" [value]="skillService.masteredCount()" color="#2d7a4f" subtitle="validées" />
+        <app-stat-card label="En cours" [value]="skillService.learningCount()" color="#e07b39" subtitle="en apprentissage" />
+        <app-stat-card label="XP Total" [value]="skillService.totalXP()" color="#6b3fa0" subtitle="points" />
+      </div>
+
+      <!-- Level Progress -->
+      <div class="bg-white border border-[#e0d8cc] rounded-xl p-4">
+        <h2 class="font-lora font-bold text-navy-800 mb-3">Progression vers Niveau {{ skillService.currentLevel() + 1 }}</h2>
+        <div class="flex justify-between items-center mb-2">
+          <span class="text-xs text-[#5a5a5a]">Niveau {{ skillService.currentLevel() }}</span>
+          <span class="text-sm font-bold text-navy-800">
+            {{ skillService.totalXP() }} / {{ skillService.currentLevel() * 1000 }} XP
+          </span>
+        </div>
+        <app-progress-bar [percentage]="skillService.progressToNextLevel()" [height]="8" />
+        <div class="text-xs text-[#5a5a5a] mt-2">
+          {{ skillService.xpToNextLevel() }} XP avant le niveau suivant
+        </div>
+      </div>
+
+      <!-- Recent Activity -->
+      <div class="bg-white border border-[#e0d8cc] rounded-xl p-4">
+        <h2 class="font-lora font-bold text-navy-800 mb-3">Activité Récente</h2>
+        <div class="space-y-3">
+          @for (activity of skillService.activities(); track activity.id) {
+            <div class="flex items-center gap-3 pb-3 border-b border-[#e0d8cc] last:border-0 last:pb-0">
+              <div class="w-8 h-8 rounded-lg flex items-center justify-center" [class]="activity.iconColor">
+                <span>{{ activity.icon }}</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="font-bold text-sm text-navy-800">{{ activity.title }}</div>
+                <div class="text-xs text-[#5a5a5a]">{{ activity.description }}</div>
+              </div>
+              <div class="text-right">
+                <div class="text-xs font-bold text-purple-600">+{{ activity.xpGained }} XP</div>
+                <div class="text-[10px] text-[#5a5a5a]">{{ getRelativeTime(activity.timestamp) }}</div>
+              </div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>

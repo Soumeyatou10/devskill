@@ -1,0 +1,50 @@
+   <div class="space-y-5">
+      <h1 class="font-lora text-xl md:text-2xl font-bold text-[#1a2340]">Mon Profil</h1>
+      
+      <!-- User Info -->
+      <div class="bg-white border border-[#e0d8cc] rounded-xl p-5">
+        <div class="flex items-center gap-4 flex-wrap">
+          <div class="w-14 h-14 rounded-full bg-teal-600 flex items-center justify-center">
+            <span class="text-white text-xl font-bold">SY</span>
+          </div>
+          <div>
+            <div class="font-lora font-bold text-lg text-[#1a2340]">Soumeyatou Yienou</div>
+            <div class="text-sm text-[#5a5a5a]">Développeur Angular · Niveau {{ skillService.currentLevel() }}</div>
+          </div>
+          <div class="ml-auto text-right">
+            <div class="font-lora text-xl font-bold text-[#6b3fa0]">{{ skillService.totalXP() }} XP</div>
+            <div class="text-xs text-[#5a5a5a]">{{ skillService.xpToNextLevel() }} avant niveau {{ skillService.currentLevel() + 1 }}</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Progress -->
+      <div class="bg-white border border-[#e0d8cc] rounded-xl p-5">
+        <h2 class="font-lora font-bold text-[#1a2340] mb-3">Progression par Catégorie</h2>
+        @for (cat of categories(); track cat.name) {
+          <div class="mb-3">
+            <div class="flex justify-between text-sm mb-1">
+              <span class="font-bold text-[#1a2340]">{{ cat.name }}</span>
+              <span class="text-xs text-[#5a5a5a]">{{ cat.mastered }}/{{ cat.total }} maîtrisées</span>
+            </div>
+            <app-progress-bar [percentage]="cat.percentage" [color]="cat.color" [height]="6" />
+          </div>
+        }
+      </div>
+
+      <!-- Achievements -->
+      <div class="bg-white border border-[#e0d8cc] rounded-xl p-5">
+        <h2 class="font-lora font-bold text-[#1a2340] mb-3">Réalisations</h2>
+        <div class="grid grid-cols-2 sm:grid-cols-3 gap-3">
+          @for (ach of achievements; track ach.title) {
+            <div 
+              class="text-center p-3 rounded-lg border-2 transition-all"
+              [class]="ach.earned ? 'bg-white border-teal-200' : 'bg-[#f2ede4] border-transparent opacity-40'"
+            >
+              <div class="text-2xl mb-1">{{ ach.icon }}</div>
+              <div class="text-xs font-bold text-[#1a2340]">{{ ach.title }}</div>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
